@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chemistry Unit 2 Review: Nuclear Chemistry (NC1)</title>
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#F4F7FA;--surface:#FFFFFF;--ink:#17252E;--muted:#55666F;--line:#D2DCE0;
+  --stain:#0F6B66;--stain-soft:#DDF0EE;--eosin:#A85A00;--eosin-soft:#FBEBD5;--accent:var(--eosin);--grid:rgba(15,107,102,.10);
+  --ok:#2C7A4B;--ok-soft:#E1F1E7;--warn:#8F5B00;--warn-soft:#FAEFD8;--bad:#B0261E;--bad-soft:#FAE5E2;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F1722;--surface:#15232C;--ink:#E4EDF1;--muted:#9CB0BA;--line:#2A3D48;
+    --stain:#6ED0C6;--stain-soft:#123634;--eosin:#F2B45C;--eosin-soft:#3A2A12;--accent:var(--eosin);--grid:rgba(110,208,198,.07);
+    --ok:#6FCB93;--ok-soft:#163323;--warn:#E6B65C;--warn-soft:#382B12;--bad:#F2908A;--bad-soft:#3C1C1A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1722;--surface:#15232C;--ink:#E4EDF1;--muted:#9CB0BA;--line:#2A3D48;
+  --stain:#6ED0C6;--stain-soft:#123634;--eosin:#F2B45C;--eosin-soft:#3A2A12;--accent:var(--eosin);--grid:rgba(110,208,198,.07);
+  --ok:#6FCB93;--ok-soft:#163323;--warn:#E6B65C;--warn-soft:#382B12;--bad:#F2908A;--bad-soft:#3C1C1A;
+}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{margin:0;min-height:100%;background-color:var(--bg);background-image:radial-gradient(var(--grid) 1.2px,transparent 1.3px);background-size:18px 18px;color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0 0 .5em}
+h1{font-size:2rem}h2{font-size:1.5rem}h3{font-size:1.15rem}
+p{margin:0 0 .8em}
+a{color:var(--stain)}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--eosin);outline-offset:2px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.topin{max-width:820px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-weight:600;font-size:1.05rem;margin-right:auto}
+.dots{display:flex;gap:6px;align-items:center}
+.dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--stain);background:transparent}
+.dot.done{background:var(--stain)}
+.dot.now{background:var(--eosin);border-color:var(--eosin)}
+.btn{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 14px;font-size:.95rem}
+.btn:hover{border-color:var(--stain)}
+.btn.primary{background:var(--stain);border-color:var(--stain);color:var(--surface);font-weight:600}
+.btn.small{padding:5px 10px;font-size:.85rem}
+.btn[disabled]{opacity:.45;cursor:default}
+main{max-width:820px;margin:0 auto;padding:22px 16px 40px}
+.secmeta{color:var(--muted);font-size:.9rem;margin-bottom:.3em}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 16px}
+.lens{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
+.cellcard{position:relative;border:1.5px solid var(--stain);border-radius:10px;padding:16px 14px 16px 50px;background:var(--surface)}
+.cellcard::before{content:"";position:absolute;left:16px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--eosin);box-shadow:8px 4px 0 var(--stain),2px 10px 0 var(--stain),10px 12px 0 var(--eosin)}
+
+.cellcard b{display:block;font-family:var(--serif);font-size:1.05rem}
+.cellcard span{font-size:.85rem;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{font-family:var(--serif);font-weight:600}
+.tw{overflow-x:auto}
+.miss{border-left:5px solid var(--warn);background:var(--warn-soft);border-radius:10px;padding:12px 16px;margin:12px 0}
+.move{border-left:5px solid var(--eosin);background:var(--eosin-soft);border-radius:10px;padding:12px 16px;margin:12px 0}
+.ex{border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:10px 0}
+.ex h3{font-size:1rem}
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.chain span{background:var(--stain-soft);border:1px solid var(--stain);border-radius:999px;padding:3px 10px;font-size:.9rem}
+.chain i{color:var(--muted);font-style:normal}
+ul,ol{margin:0 0 .8em;padding-left:1.3em}
+li{margin:.2em 0}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 16px}
+.qhead{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.qnum{font-family:var(--serif);font-weight:600}
+.lvl{font-size:.78rem;border-radius:6px;padding:2px 7px;font-weight:600}
+.lvl.l2{background:var(--stain-soft);color:var(--stain)}
+.lvl.l3{background:var(--eosin-soft);color:var(--eosin)}
+.tries{margin-left:auto;font-size:.82rem;color:var(--muted)}
+.opts{display:grid;gap:8px;margin:10px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:9px 12px}
+.opt.sel{border-color:var(--stain);background:var(--stain-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+input[type=text],input[type=number],select{font:inherit;border:1.5px solid var(--line);border-radius:9px;padding:7px 10px;background:var(--bg);color:var(--ink);max-width:100%}
+.ans{width:11em}
+.unit{color:var(--muted)}
+.cls{display:grid;gap:8px;margin:10px 0}
+.clsrow{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:6px}
+.clsrow.right select{border-color:var(--ok)}.clsrow.wrong select{border-color:var(--bad)}
+.ordbank,.ordpick{display:grid;gap:6px;margin:8px 0}
+.ordpick{min-height:40px;border:1.5px dashed var(--line);border-radius:10px;padding:8px}
+.ordpick ol{margin:0;padding-left:1.4em}
+.chip{text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:7px 10px;font-size:.95rem}
+.fb{margin-top:10px;border-radius:10px;padding:9px 12px;font-size:.95rem}
+.fb:empty{display:none}
+.fb.ok{background:var(--ok-soft);color:var(--ok);font-weight:600}
+.fb.no{background:var(--bad-soft);color:var(--bad)}
+.fb.hint{background:var(--warn-soft);color:var(--ink)}
+.sol{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
+.sol::before{content:"Worked solution";display:block;font-family:var(--serif);font-weight:600;margin-bottom:4px;color:var(--stain)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.score{font-family:var(--serif);font-size:2.6rem;line-height:1;margin:.1em 0}
+.tag{font-size:.82rem;font-weight:700;border-radius:6px;padding:2px 8px}
+.tag.solid{background:var(--ok-soft);color:var(--ok)}
+.tag.rev{background:var(--warn-soft);color:var(--warn)}
+.streak{font-family:var(--serif);font-size:1.3rem}
+dialog{border:none;border-radius:16px;background:var(--surface);color:var(--ink);width:min(720px,94vw);max-height:86vh;padding:0}
+dialog::backdrop{background:rgba(10,20,26,.55)}
+.dhead{position:sticky;top:0;background:var(--surface);display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)}
+.dbody{padding:12px 18px 18px}
+.dbody dt{font-weight:700;margin-top:8px}.dbody dd{margin:0 0 4px 0}
+.muted{color:var(--muted)}
+.namebox{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}
+@media (max-width:560px){h1{font-size:1.6rem}.panel,.q{padding:14px}.brand{font-size:.95rem}}
+@media (prefers-reduced-motion: no-preference){.q.flash{animation:fl .5s ease}@keyframes fl{from{box-shadow:0 0 0 4px var(--eosin-soft)}to{box-shadow:none}}}
+@media print{
+  header.top,.nav,.btn,dialog,.noprint{display:none!important}
+  body{background:#fff;color:#000;font-size:12pt}
+  .panel,.q{border:1px solid #999;break-inside:avoid}
+  main{max-width:none;padding:0}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="topin">
+    <div class="brand">Chemistry NC1 Review: Nuclear Chemistry</div>
+    <div class="dots" id="dots" aria-label="Progress"></div>
+    <button class="btn small" id="termsBtn" type="button">Reference sheet</button>
+  </div>
+</header>
+<main id="main"></main>
+
+<dialog id="terms" aria-labelledby="termsTitle">
+  <div class="dhead"><h2 id="termsTitle" style="margin:0;font-size:1.2rem">Reference sheet</h2><button class="btn small" id="termsClose" type="button">Close</button></div>
+  <div class="dbody" id="termsBody"></div>
+</dialog>
+
+<script>
+// ===== Chemistry Unit 2, NC1 (Nuclear Chemistry) question bank =====
+// Wording follows Concept 3 Notes (CP), the study-guide key, the CP quiz key and the NC1 scale the teacher shared.
+var BANK = (function(){
+  function R(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+  function pick(a){return a[Math.floor(Math.random()*a.length)];}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function r2(x){return Math.round(x*100)/100;}
+  function f2(x){return (Math.round(x*100)/100).toString();}
+  function fromPool(pool,std,lvl){return function(){var v=pick(pool);var o={};for(var k in v)o[k]=v[k];o.std=std;o.lvl=lvl;if(!o.type)o.type='mc';return o;};}
+  function classifyPick(items,cats,n){var chosen=[];cats.forEach(function(c){chosen.push(pick(items.filter(function(i){return i[1]===c;})));});
+    var rest=shuffle(items.filter(function(i){return chosen.indexOf(i)<0;}));while(chosen.length<n)chosen.push(rest.pop());
+    return shuffle(chosen).map(function(i){return {t:i[0],c:i[1]};});}
+
+  // element data used in generators (Z, symbol, name)
+  var EL={1:['H','hydrogen'],2:['He','helium'],6:['C','carbon'],7:['N','nitrogen'],15:['P','phosphorus'],16:['S','sulfur'],19:['K','potassium'],20:['Ca','calcium'],27:['Co','cobalt'],28:['Ni','nickel'],38:['Sr','strontium'],39:['Y','yttrium'],43:['Tc','technetium'],44:['Ru','ruthenium'],53:['I','iodine'],54:['Xe','xenon'],55:['Cs','cesium'],56:['Ba','barium'],57:['La','lanthanum'],82:['Pb','lead'],83:['Bi','bismuth'],84:['Po','polonium'],86:['Rn','radon'],88:['Ra','radium'],90:['Th','thorium'],91:['Pa','protactinium'],92:['U','uranium'],93:['Np','neptunium'],94:['Pu','plutonium'],95:['Am','americium']};
+  var ALPHA=[[92,238],[90,232],[88,226],[86,222],[84,210],[94,239],[95,241],[84,212],[94,238]];
+  var BETA=[[6,14],[38,90],[53,131],[55,137],[27,60],[1,3],[15,32],[56,140],[90,234],[82,210],[19,40]];
+  var HL=[['iodine-131',8,'days'],['phosphorus-32',14,'days'],['radon-222',3.8,'days'],['cobalt-60',5.3,'years'],['strontium-90',29,'years'],['cesium-137',30,'years'],['carbon-14',5730,'years'],['technetium-99m',6,'hours']];
+
+  // ---------- A: what makes a nucleus unstable; nuclear vs chemical ----------
+  var a1=fromPool([
+    {prompt:'Which change is a <b>nuclear</b> reaction rather than a chemical reaction?',answer:'An atom’s nucleus loses 2 protons and 2 neutrons.',options:['An atom’s nucleus loses 2 protons and 2 neutrons.','A sodium atom gives an electron to a chlorine atom.','Two hydrogen atoms share electrons to form H₂.','Iron rusts as it combines with oxygen.'],hint:'Nuclear = changes in the nucleus. Chemical = electrons gained, lost or shared.',sol:'Only the first choice changes the <b>nucleus</b>. The others gain, lose or share <b>electrons</b>, which is chemistry.'},
+    {prompt:'In a chemical reaction, which part of the atoms changes?',answer:'The electrons (gained, lost or shared)',options:['The electrons (gained, lost or shared)','The number of protons','The number of neutrons','The strong nuclear force'],hint:'Chemical bonds form between the outer parts of atoms.',sol:'Chemical reactions involve <b>electrons</b> being gained, lost or shared. The nucleus stays the same, so the elements stay the same.'},
+    {prompt:'Why does a nuclear reaction usually produce a <b>different element</b>, while a chemical reaction does not?',answer:'A nuclear reaction can change the number of protons, and the number of protons decides the element.',options:['A nuclear reaction can change the number of protons, and the number of protons decides the element.','A nuclear reaction adds electrons, and electrons decide the element.','Chemical reactions destroy atoms, so no element is left.','Nuclear reactions only change the mass, never the protons.'],hint:'What identifies an element? (Concept 2: atomic number.)',sol:'The <b>atomic number (protons)</b> identifies an element. Changing the nucleus can change the protons; moving electrons cannot.'},
+    {prompt:'Which statement about the energy involved is true according to the notes?',answer:'Nuclear reactions involve massive amounts of energy compared with chemical reactions.',options:['Nuclear reactions involve massive amounts of energy compared with chemical reactions.','Chemical reactions involve more energy than nuclear reactions.','Nuclear reactions involve no energy change.','Both kinds of reactions involve exactly the same energy.'],hint:'Think about what fission powers and what fusion powers.',sol:'Nuclear reactions involve <b>massive</b> amounts of energy (fission runs power plants; fusion powers the Sun).'}
+  ],'A','2.0');
+  var a2=function(){var q=fromPool([
+    {type:'text',prompt:'Type the term: atoms of the same element that have a different number of neutrons.',accept:['isotope','isotopes'],hint:'You calculated these in Concept 2 (carbon-12, carbon-13, carbon-14).',sol:'<b>Isotopes</b>: same protons, different neutrons.'},
+    {type:'text',prompt:'Type the term: an isotope with extra nuclear energy that makes it unstable and likely to decay.',accept:['radioactive isotope','radioactive isotopes','radioisotope','radioisotopes'],hint:'Two words. The first word means “gives off radiation.”',sol:'A <b>radioactive isotope</b> has excess nuclear energy, so it is unstable and more likely to decay.'},
+    {type:'text',prompt:'Type the term: the small particles and rays given off during a nuclear reaction.',accept:['radiation'],hint:'Radioactivity is the emission of this.',sol:'<b>Radiation</b> = the small particles and rays released during a nuclear reaction. Radioactivity is the emission of radiation.'},
+    {type:'text',prompt:'Type the term: the force between quarks that holds the protons and neutrons of a nucleus together.',accept:['strong nuclear force','strong force','nuclear force'],hint:'It is the strongest attraction we studied, and it only works over very short distances.',sol:'The <b>strong nuclear force</b> holds the nucleus together, even though the protons repel each other.'}
+  ],'A','2.0')();return q;};
+  var a3=fromPool([
+    {prompt:'Most radioactive isotopes have more than 80 protons. Which explanation is best?',answer:'In a very large nucleus, the protons’ electric repulsion becomes greater than the short-range strong nuclear force, so the nucleus is unstable.',options:['In a very large nucleus, the protons’ electric repulsion becomes greater than the short-range strong nuclear force, so the nucleus is unstable.','Large atoms have too many electrons, which makes the nucleus fall apart.','Large atoms have no neutrons, so nothing holds them together.','The strong nuclear force gets stronger in big atoms, which pushes particles out.'],hint:'Two forces compete in the nucleus. Which one only works over short distances?',sol:'The strong nuclear force only works over a <b>short distance</b>. In a big nucleus (more than about 83 protons), <b>proton repulsion wins</b>, so the nucleus can’t hold together and it decays.'},
+    {prompt:'A student says, “A nucleus with more neutrons is always more stable.” What is the best response?',answer:'Not always: a stable nucleus needs a balance of protons and neutrons, and bigger atoms need more neutrons to be stable.',options:['Not always: a stable nucleus needs a balance of protons and neutrons, and bigger atoms need more neutrons to be stable.','Yes: neutrons have no charge, so adding them always fixes any nucleus.','No: neutrons always make a nucleus unstable.','No: stability depends only on electrons.'],hint:'The notes talk about a balance.',sol:'Stability starts in the nucleus and needs a <b>balance</b> of protons and neutrons. Too many or too few neutrons can make a nucleus unstable.'},
+    {prompt:'Carbon-12 is stable, but carbon-14 is radioactive. What is different about carbon-14?',answer:'It has 2 extra neutrons, which unbalances the nucleus and gives it excess nuclear energy.',options:['It has 2 extra neutrons, which unbalances the nucleus and gives it excess nuclear energy.','It has 2 extra protons, so it is a different element.','It has 2 extra electrons, so it is an ion.','It has no strong nuclear force.'],hint:'Same element means same protons. What does the mass number tell you?',sol:'Both have 6 protons. Carbon-14 has 14 − 6 = 8 neutrons versus 6 in carbon-12. That imbalance makes it a <b>radioactive isotope</b> that decays (to nitrogen-14).'},
+    {prompt:'Why is it so hard to turn copper into gold (the Intro to Concept 3 question)?',answer:'Copper would need 50 more protons (and many neutrons) added to its nucleus, and changing a nucleus takes massive energy.',options:['Copper would need 50 more protons (and many neutrons) added to its nucleus, and changing a nucleus takes massive energy.','Copper just needs 50 more electrons, which is easy.','Copper and gold are the same element with different charges.','Gold is a mixture, so it cannot be made.'],hint:'Copper has atomic number 29, gold 79.',sol:'79 − 29 = <b>50 protons</b> must be added to the nucleus. Electrons are easy to move; changing the nucleus takes massive energy. The gold on Earth came from fusion in exploding stars.'}
+  ],'A','3.0');
+  var a6=fromPool([
+    {prompt:'Over many years, a sample of polonium slowly becomes lead. A piece of iron that rusts is still iron. What explains the difference?',answer:'Polonium’s nucleus changes (it loses protons by decay), but rusting only moves electrons, so iron keeps its protons.',options:['Polonium’s nucleus changes (it loses protons by decay), but rusting only moves electrons, so iron keeps its protons.','Polonium gains electrons, which turns it into lead.','Rusting changes iron’s nucleus but not enough to make a new element.','Both are chemical reactions that happen at different speeds.'],hint:'Which change involves the nucleus? What decides which element it is?',sol:'Polonium (84) → lead (82): protons left the <b>nucleus</b>, so the element changed. Rust is a <b>chemical</b> change: electrons move, protons stay, so it is still iron.'},
+    {prompt:'Why is radioactive decay called <b>spontaneous</b>?',answer:'An unstable nucleus can no longer hold itself together, so it gives off radiation on its own without being triggered.',options:['An unstable nucleus can no longer hold itself together, so it gives off radiation on its own without being triggered.','It only happens when scientists fire neutrons at it.','It only happens when the atom gains electrons.','It happens only once every 5,730 years.'],hint:'Compare: fission can be started by a neutron. Does decay need a trigger?',sol:'Decay happens <b>on its own</b> because the nucleus is unstable (too much nuclear energy) and loses energy and matter by emitting radiation.'},
+    {prompt:'Which isotope is most likely to be radioactive, and why?',answer:'Uranium-238, because it has more than 83 protons, so proton repulsion beats the strong nuclear force.',options:['Uranium-238, because it has more than 83 protons, so proton repulsion beats the strong nuclear force.','Carbon-12, because it is small and light.','Oxygen-16, because it has equal protons and neutrons.','Iron-56, because iron is a metal.'],hint:'Look at the number of protons in each.',sol:'Uranium has 92 protons. Above about 83 protons, the <b>repulsion</b> between protons is greater than the short-range <b>strong nuclear force</b>, so every isotope is unstable.'}
+  ],'A','3.0');
+  var A_ITEMS=[['An electron is transferred from Na to Cl','Chemical'],['Methane burns in oxygen','Chemical'],['Two atoms share electrons to form a bond','Chemical'],['Uranium-238 gives off an alpha particle','Nuclear'],['Hydrogen nuclei fuse in the Sun','Nuclear'],['A neutron splits a uranium-235 nucleus','Nuclear'],['Carbon-14 changes into nitrogen-14','Nuclear'],['Iron reacts with oxygen to form rust','Chemical']];
+  function a4(){var cats=['Nuclear','Chemical'];return {std:'A',lvl:'2.0',type:'classify',prompt:'Is each change a nuclear reaction or a chemical reaction?',cats:cats,items:classifyPick(A_ITEMS,cats,4),
+    hint:'Ask: did the nucleus change (protons or neutrons), or did electrons move?',sol:'Nuclear: the nucleus changes (decay, fission, fusion; one element becomes another). Chemical: electrons are gained, lost or shared; the elements stay the same.'};}
+  function a5(){var e=pick(ALPHA.concat(BETA)),Z=e[0],A=e[1],n=A-Z;
+    return {std:'A',lvl:'2.0',type:'num',prompt:'How many <b>neutrons</b> are in the nucleus of '+EL[Z][1]+'-'+A+'? (Atomic number of '+EL[Z][1]+' = '+Z+'.)',answer:n,unit:'neutrons',tol:0.005,
+      hint:'Neutrons = mass number − atomic number (from Concept 2).',sol:A+' − '+Z+' = <b>'+n+' neutrons</b>. The mass number counts protons + neutrons; the atomic number counts protons.',params:{Z:Z,A:A}};}
+
+  // ---------- B: radioactive decay, alpha/beta/gamma, half-life ----------
+  var b1=fromPool([
+    {prompt:'Which radiation is <b>2 protons and 2 neutrons</b> leaving the nucleus?',answer:'Alpha (α)',options:['Alpha (α)','Beta (β)','Gamma (γ)','Electron capture'],hint:'It is the same as a helium nucleus.',sol:'An <b>alpha particle (α)</b> = 2 p⁺ + 2 n⁰ (a helium-4 nucleus).'},
+    {prompt:'Which radiation is <b>one electron</b> released from the nucleus when a neutron splits into a proton and an electron?',answer:'Beta (β)',options:['Beta (β)','Alpha (α)','Gamma (γ)','Fusion'],hint:'Its symbol is the second Greek letter.',sol:'A <b>beta particle (β)</b> = 1 e⁻. The neutron becomes a proton and the electron leaves.'},
+    {prompt:'Which radiation is a form of <b>electromagnetic energy</b> with no mass, often given off along with alpha or beta?',answer:'Gamma (γ)',options:['Gamma (γ)','Alpha (α)','Beta (β)','Chain reaction'],hint:'It sits at the high-energy end of the electromagnetic spectrum.',sol:'<b>Gamma rays (γ)</b> are electromagnetic energy, not particles, and often come with alpha or beta decay.'},
+    {prompt:'Which radiation is <b>most penetrating</b> and needs thick lead or concrete to block it?',answer:'Gamma (γ)',options:['Gamma (γ)','Alpha (α)','Beta (β)','They are all stopped by paper'],hint:'The one with no mass and no charge gets through the most.',sol:'Penetrating ability: <b>alpha</b> is stopped by paper or skin, <b>beta</b> by thin aluminum, <b>gamma</b> needs thick lead or concrete.'},
+    {prompt:'Which radiation is <b>least penetrating</b> and can be stopped by a sheet of paper?',answer:'Alpha (α)',options:['Alpha (α)','Gamma (γ)','Beta (β)','All radiation goes through paper'],hint:'The biggest, most massive particle.',sol:'<b>Alpha</b> particles are big and heavy, so a sheet of paper (or the outer layer of skin) stops them.'}
+  ],'B','2.0');
+  function b2(){ // half-life calculation
+    var h=pick(HL),n=R(1,5),M=pick([1,2,3,5,6,7,9,10,12])*Math.pow(2,n)*pick([1,1,2]),rem=M/Math.pow(2,n),t=n*h[1];
+    var mode=pick(['remain','count','time']);
+    var hlTxt=h[1]+' '+h[2];
+    if(mode==='remain')return {std:'B',lvl:'2.0',type:'num',prompt:h[0].charAt(0).toUpperCase()+h[0].slice(1)+' has a half-life of <b>'+hlTxt+'</b>. A sample starts with <b>'+M+' g</b> of '+h[0]+'. How much '+h[0]+' is left after <b>'+f2(t)+' '+h[2]+'</b>?',answer:r2(rem),unit:'g',tol:0.02,
+      hint:'Each half-life, half of the unstable nuclei decay. Count the half-lives (time ÷ half-life), then halve that many times.',
+      sol:f2(t)+' ÷ '+hlTxt+' = '+n+' half-li'+(n>1?'ves':'fe')+'. '+[M].concat(Array.apply(null,{length:n}).map(function(_,i){return f2(M/Math.pow(2,i+1));})).join(' → ')+' g. <b>'+f2(rem)+' g</b> remain.',params:{M:M,n:n,hl:h[1]}};
+    if(mode==='count')return {std:'B',lvl:'2.0',type:'num',prompt:'A '+M+' g sample of '+h[0]+' (half-life '+hlTxt+') decays until only <b>'+f2(rem)+' g</b> of '+h[0]+' is left. How many half-lives have passed?',answer:n,unit:'half-lives',tol:0.005,
+      hint:'Keep halving the starting mass until you reach the amount left. Count the halvings.',
+      sol:[M].concat(Array.apply(null,{length:n}).map(function(_,i){return f2(M/Math.pow(2,i+1));})).join(' → ')+' g: <b>'+n+'</b> halvings = '+n+' half-li'+(n>1?'ves':'fe')+'.',params:{M:M,rem:rem}};
+    return {std:'B',lvl:'2.0',type:'num',prompt:'A '+M+' g sample of '+h[0]+' (half-life <b>'+hlTxt+'</b>) has decayed until <b>'+f2(rem)+' g</b> is left. How much time has passed, in '+h[2]+'?',answer:r2(t),unit:h[2],tol:0.02,
+      hint:'First count the half-lives (how many halvings), then multiply by the half-life.',
+      sol:'Halvings: '+[M].concat(Array.apply(null,{length:n}).map(function(_,i){return f2(M/Math.pow(2,i+1));})).join(' → ')+' g = '+n+' half-lives. '+n+' × '+hlTxt+' = <b>'+f2(t)+' '+h[2]+'</b>.',params:{n:n,hl:h[1]}};
+  }
+  function b3(){ // what changes in the nucleus
+    var alpha=Math.random()<0.5,e=alpha?pick(ALPHA):pick(BETA),Z=e[0],A=e[1];
+    var nZ=alpha?Z-2:Z+1,nA=alpha?A-4:A,ask=pick(['Z','A']);
+    var ans=ask==='Z'?nZ:nA;
+    return {std:'B',lvl:'3.0',type:'num',prompt:EL[Z][1].charAt(0).toUpperCase()+EL[Z][1].slice(1)+'-'+A+' (atomic number '+Z+') undergoes <b>'+(alpha?'alpha':'beta')+' decay</b>. What is the <b>'+(ask==='Z'?'atomic number':'mass number')+'</b> of the new nucleus?',answer:ans,unit:'',tol:0.005,
+      hint:alpha?'An alpha particle carries away 2 protons and 2 neutrons. Protons decide the atomic number; protons + neutrons decide the mass number.':'In beta decay a neutron splits into a proton and an electron, and the electron leaves. So one neutron becomes one proton.',
+      sol:alpha?'Losing 2 p⁺ and 2 n⁰: atomic number '+Z+' − 2 = '+nZ+', mass number '+A+' − 4 = '+nA+'. Answer: <b>'+ans+'</b>'+(EL[nZ]?' (the new element is '+EL[nZ][1]+'-'+nA+')':'')+'.':'One neutron → one proton: atomic number '+Z+' + 1 = '+nZ+'; the mass number stays '+A+' (the total of protons + neutrons does not change). Answer: <b>'+ans+'</b>'+(EL[nZ]?' (the new element is '+EL[nZ][1]+'-'+nA+')':'')+'.',params:{Z:Z,A:A,alpha:alpha,ask:ask}};
+  }
+  var b4=fromPool([
+    {prompt:'A detector placed behind a sheet of paper still reads radiation from a source, but a thin sheet of aluminum blocks it completely. What is the source most likely giving off?',answer:'Beta particles',options:['Beta particles','Alpha particles','Gamma rays','No radiation at all'],hint:'Compare what each kind of radiation can get through.',sol:'Paper did not stop it, so it is not alpha. Thin aluminum stopped it, so it is not gamma. That leaves <b>beta</b>.'},
+    {prompt:'Why does gamma radiation not change the atomic number or mass number of a nucleus?',answer:'Gamma is energy with no protons or neutrons, so the nucleus only loses energy.',options:['Gamma is energy with no protons or neutrons, so the nucleus only loses energy.','Gamma removes 2 protons and 2 neutrons.','Gamma adds an electron to the nucleus.','Gamma turns protons into neutrons.'],hint:'What is a gamma ray made of?',sol:'A gamma ray is <b>electromagnetic energy</b>. It carries away energy but no particles, so the counts stay the same.'},
+    {prompt:'Radium-226 decays to radon-222. Which kind of decay is this, and what evidence shows it?',answer:'Alpha: the atomic number drops by 2 and the mass number drops by 4.',options:['Alpha: the atomic number drops by 2 and the mass number drops by 4.','Beta: the atomic number goes up by 1.','Gamma: nothing in the nucleus changes.','Fusion: two nuclei combined.'],hint:'Radium is 88, radon is 86. Compare 226 and 222.',sol:'88 → 86 (lost 2 protons) and 226 → 222 (lost 4 total). That is 2 p⁺ + 2 n⁰ leaving: <b>alpha</b> decay.'},
+    {prompt:'Why is a radioactive isotope with a 6-hour half-life more useful for a medical scan than one with a 30-year half-life?',answer:'It is detectable during the scan but most of it decays within a day or two, so the patient’s exposure is short.',options:['It is detectable during the scan but most of it decays within a day or two, so the patient’s exposure is short.','It gives off no radiation at all.','A shorter half-life means the isotope never decays.','Long half-life isotopes cannot be detected.'],hint:'Half-life = time for half of the unstable nuclei to decay. How long does each one stay in the body?',sol:'After about 10 half-lives (60 hours) almost none is left. A 30-year isotope would keep exposing the patient for decades. <b>Half-life is evidence for safety decisions.</b>'},
+    {prompt:'Why does knowing the half-life of carbon-14 (5,730 years) let scientists estimate the age of an old piece of wood?',answer:'Carbon-14 decays at a steady rate, so the fraction left shows how many half-lives have passed.',options:['Carbon-14 decays at a steady rate, so the fraction left shows how many half-lives have passed.','Carbon-14 turns into wood at a steady rate.','All carbon-14 disappears after exactly one half-life.','Carbon-14 decays faster in older samples.'],hint:'Half-life is the same every time.',sol:'Each 5,730 years, half of the carbon-14 decays (to nitrogen-14). If ¼ is left, <b>2 half-lives</b> (11,460 years) have passed.'}
+  ],'B','3.0');
+  function b5(){var a=pick(['alpha','beta','gamma']);
+    var q={alpha:'Type the radiation: a particle made of 2 protons and 2 neutrons that a sheet of paper can stop.',beta:'Type the radiation: a fast electron that leaves the nucleus after a neutron changes into a proton.',gamma:'Type the radiation: pure electromagnetic energy that needs thick lead or concrete to block.'};
+    return {std:'B',lvl:'2.0',type:'text',prompt:q[a],accept:{alpha:['alpha','alpha particle','alpha particles','alpha radiation'],beta:['beta','beta particle','beta particles','beta radiation'],gamma:['gamma','gamma ray','gamma rays','gamma radiation']}[a],
+      hint:'Alpha, beta or gamma. Think about what is released and how far it can go.',sol:'<b>'+a.charAt(0).toUpperCase()+a.slice(1)+'</b>. Alpha (α) = 2 p⁺ + 2 n⁰; beta (β) = 1 e⁻; gamma (γ) = electromagnetic energy.'};}
+
+  // ---------- C: fission, fusion, chain reactions, nucleosynthesis ----------
+  var C_ITEMS=[['A neutron hits uranium-235 and it splits into two smaller nuclei','Fission'],['Hydrogen nuclei combine to form helium in the Sun','Fusion'],['Produces radioactive waste','Fission'],['Happens in stars','Fusion'],['Used in today’s nuclear power plants','Fission'],['Two light nuclei join into one heavier nucleus','Fusion'],['Can set off a chain reaction','Fission'],['Formed the heavy elements, like gold, in exploding stars','Fusion']];
+  function c1(){var cats=['Fission','Fusion'];return {std:'C',lvl:'2.0',type:'classify',prompt:'Does each description match <b>fission</b> or <b>fusion</b>?',cats:cats,items:classifyPick(C_ITEMS,cats,4),
+    hint:'Fission = splitting (think “fissure,” a crack). Fusion = fusing together.',sol:'Fission: 1 larger atom splits into 2+ smaller ones; can cause chain reactions; used in reactors; makes radioactive waste. Fusion: 2+ lighter atoms combine into a larger one; happens in stars; makes no radioactive waste; made the elements (nucleosynthesis).'};}
+  function c2(){var v=pick([
+    {t:'text',prompt:'Type the term: an ongoing series of reactions in which each reaction triggers more, giving an exponential result.',accept:['chain reaction','chain reactions','nuclear chain reaction'],sol:'A <b>chain reaction</b>: neutrons released by one fission split more nuclei, which release more neutrons…'},
+    {t:'text',prompt:'Type the term: the formation of new elements through nuclear reactions, such as fusion in stars.',accept:['nucleosynthesis'],sol:'<b>Nucleosynthesis</b> made the elements found on Earth, in stars that exploded billions of years ago.'},
+    {t:'text',prompt:'Type the term: the type of nuclear reaction that splits one larger atom into two or more smaller ones.',accept:['fission','nuclear fission'],sol:'<b>Fission</b> splits a large nucleus. It can happen on its own or when a neutron is fired into the nucleus.'},
+    {t:'text',prompt:'Type the term: the type of nuclear reaction that combines two or more lighter atoms into one larger atom.',accept:['fusion','nuclear fusion'],sol:'<b>Fusion</b> combines light nuclei, like hydrogen into helium in the Sun.'}]);
+    return {std:'C',lvl:'2.0',type:'text',prompt:v.prompt,accept:v.accept,hint:'Use the vocabulary from your Concept 3 notes.',sol:v.sol};}
+  function c3(){ // chain reaction growth
+    var k=pick([2,3]),g=R(3,6),ans=Math.pow(k,g);
+    return {std:'C',lvl:'3.0',type:'num',prompt:'In a simple model of a chain reaction, each fission releases neutrons that cause <b>'+k+'</b> new fissions. Starting from 1 fission, how many fissions happen in generation <b>'+(g+1)+'</b> (that is, after '+g+' rounds of multiplying)?',answer:ans,unit:'fissions',tol:0.005,
+      hint:'Each generation multiplies by '+k+': 1, '+k+', '+(k*k)+', …',
+      sol:'1 × '+k+'<sup>'+g+'</sup> = <b>'+ans+'</b>. That fast, exponential growth is why a chain reaction must be controlled in a reactor (a simplified model; real reactors absorb extra neutrons).',params:{k:k,g:g}};}
+  var c4=fromPool([
+    {prompt:'Why do nuclear power plants use fission instead of fusion?',answer:'Fusion needs extreme energy (star-like conditions) to start, while fission can be started by firing a neutron into a large nucleus.',options:['Fusion needs extreme energy (star-like conditions) to start, while fission can be started by firing a neutron into a large nucleus.','Fission makes no radioactive waste, so it is safer.','Fusion releases no energy.','Fission only happens in stars.'],hint:'Where does fusion happen naturally?',sol:'Fusion needs <b>insane amounts of energy</b> (it happens in stars). Fission can be triggered by a <b>neutron</b>, so reactors use it.'},
+    {prompt:'Compare the products of fission and fusion. Which statement is correct?',answer:'Fission produces smaller nuclei and radioactive waste; fusion produces a larger nucleus and no radioactive waste.',options:['Fission produces smaller nuclei and radioactive waste; fusion produces a larger nucleus and no radioactive waste.','Both produce larger nuclei and radioactive waste.','Fission produces a larger nucleus; fusion produces smaller ones.','Neither produces any new elements.'],hint:'Split vs. combine. Which one did the notes say releases radioactive waste?',sol:'Fission: 1 big → 2+ smaller nuclei, plus <b>radioactive waste</b>. Fusion: 2+ small → 1 larger, with <b>no radioactive waste</b>.'},
+    {prompt:'A reactor’s control system fails and too many neutrons keep causing new fissions. What is the danger?',answer:'An uncontrolled chain reaction: the number of fissions grows exponentially, releasing heat and radiation faster than it can be handled.',options:['An uncontrolled chain reaction: the number of fissions grows exponentially, releasing heat and radiation faster than it can be handled.','The reactor would switch to fusion.','The fissions would stop because there are too many neutrons.','The uranium would turn back into hydrogen.'],hint:'What does “exponential result” mean?',sol:'Each fission triggers more, so the rate <b>grows exponentially</b>. Poorly controlled reactors can lead to accidents like Chernobyl.'},
+    {prompt:'The Sun fuses hydrogen into helium. Why can’t the Sun make gold?',answer:'The Sun is only hot enough (has enough energy) to make helium; heavier elements form in larger, hotter stars and when they explode.',options:['The Sun is only hot enough (has enough energy) to make helium; heavier elements form in larger, hotter stars and when they explode.','Gold can only be made by fission.','The Sun has no hydrogen left.','Gold is made by chemical reactions, not nuclear ones.'],hint:'Making heavier elements takes more energy.',sol:'Nucleosynthesis of heavy elements needs <b>more energy</b> than our Sun has. Earth’s gold came from fusion in huge stars that exploded.'},
+    {prompt:'Which statement about energy is supported by the notes?',answer:'Fusion releases the energy we see as sunlight, and fission releases lots of energy from very little fuel.',options:['Fusion releases the energy we see as sunlight, and fission releases lots of energy from very little fuel.','Only fission releases energy; fusion absorbs it all.','Neither reaction releases more energy than burning wood.','Fusion and fission both need no energy to start.'],hint:'Think of the Sun and of a power plant.',sol:'The Sun’s fusion of hydrogen → helium makes <b>sunlight</b>; fission in reactors gives <b>tons of energy from very little material</b>.'}
+  ],'C','3.0');
+  var c5=fromPool([
+    {prompt:'Which equation shows <b>fusion</b>?',answer:'¹H + ²H → ³He + energy',options:['¹H + ²H → ³He + energy','²³⁸U → ⁴He + ²³⁴Th','¹⁴C → ⁰₋₁e + ¹⁴N','A neutron hits ²³⁵U and it splits into ¹⁴¹Ba + ⁹²Kr + neutrons'],hint:'Look for small nuclei combining into a larger one.',sol:'Two small hydrogen nuclei combine into helium: <b>fusion</b>. The others are alpha decay, beta decay and fission.'},
+    {prompt:'Which equation shows <b>fission</b>?',answer:'A neutron hits ²³⁵U and it splits into ¹⁴¹Ba + ⁹²Kr + neutrons',options:['A neutron hits ²³⁵U and it splits into ¹⁴¹Ba + ⁹²Kr + neutrons','¹H + ²H → ³He + energy','²³⁸U → ⁴He + ²³⁴Th','¹⁴C → ⁰₋₁e + ¹⁴N'],hint:'Look for one big nucleus splitting into smaller ones.',sol:'One large uranium nucleus splits into two smaller ones plus neutrons: <b>fission</b>. The extra neutrons can start a chain reaction.'},
+    {prompt:'Which equation shows <b>alpha decay</b>?',answer:'²³⁸U → ⁴He + ²³⁴Th',options:['²³⁸U → ⁴He + ²³⁴Th','¹H + ²H → ³He + energy','¹⁴C → ⁰₋₁e + ¹⁴N','A neutron hits ²³⁵U and it splits into ¹⁴¹Ba + ⁹²Kr + neutrons'],hint:'Look for a helium-4 nucleus coming out.',sol:'A ⁴He nucleus (2 p⁺ + 2 n⁰) leaves: <b>alpha decay</b>.'}
+  ],'C','2.0');
+
+  // ---------- D: applications and risks ----------
+  var d1=fromPool([
+    {prompt:'Which pair shows a correct <b>benefit and drawback</b> of nuclear power plants (fission)?',answer:'Benefit: tons of energy from little fuel with no greenhouse gases. Drawback: radioactive waste.',options:['Benefit: tons of energy from little fuel with no greenhouse gases. Drawback: radioactive waste.','Benefit: no waste at all. Drawback: uses lots of coal.','Benefit: makes gold. Drawback: needs sunlight.','Benefit: no workers are ever exposed. Drawback: low energy output.'],hint:'Look back at the reactor slide in your notes.',sol:'Benefits: <b>lots of energy, little material, no greenhouse gases</b>. Drawbacks: <b>radioactive waste</b>, water pollution, worker exposure, accidents if poorly maintained.'},
+    {prompt:'Radiation is used to treat cancer. Which pair is a correct benefit and drawback?',answer:'Benefit: it can kill cancer cells. Drawback: it can also damage healthy cells, and the radioactive material must be stored safely.',options:['Benefit: it can kill cancer cells. Drawback: it can also damage healthy cells, and the radioactive material must be stored safely.','Benefit: it has no side effects. Drawback: it is too weak to affect cells.','Benefit: it grows new cells. Drawback: it uses fossil fuels.','Benefit: it cures every cancer. Drawback: none.'],hint:'Radiation damages cells. Is that good, bad, or both?',sol:'The same property that kills <b>cancer cells</b> can harm <b>healthy cells</b>; leftover radioactive material must be stored until it is no longer radioactive.'},
+    {prompt:'Which is a benefit and a drawback of <b>radioactive dating</b> (like carbon dating)?',answer:'Benefit: estimates the age of samples. Drawback: samples can be contaminated, giving wrong ages.',options:['Benefit: estimates the age of samples. Drawback: samples can be contaminated, giving wrong ages.','Benefit: produces electricity. Drawback: causes greenhouse gases.','Benefit: cures disease. Drawback: changes the sample into gold.','Benefit: makes samples younger. Drawback: none.'],hint:'What does dating tell you? What could make the measurement wrong?',sol:'Dating uses half-life to find <b>age</b>; <b>contamination</b> can throw it off.'},
+    {prompt:'Which use of nuclear chemistry did classmates research (from the project list)?',answer:'Radioactive isotopes as tracers in medical imaging',options:['Radioactive isotopes as tracers in medical imaging','Burning gasoline in car engines','Dissolving salt in water','Rusting iron for paint'],hint:'Only one of these involves a change in the nucleus.',sol:'<b>Medical imaging</b> uses radioactive isotopes (for example, fluorine-18 in PET scans). The others are chemical or physical changes.'}
+  ],'D','2.0');
+  var D_ITEMS=[['Cancer treatment','Kills cancer cells'],['Nuclear power plant','Large energy, no greenhouse gases'],['Carbon dating','Finds the age of ancient samples'],['Medical imaging tracer','Shows how an organ is working'],['Space probe power source','Long-lasting power far from the Sun'],['Food irradiation','Kills bacteria in food']];
+  function d2(){var picks=shuffle(D_ITEMS).slice(0,4);return {std:'D',lvl:'2.0',type:'classify',prompt:'Match each nuclear application to its main <b>benefit</b>.',cats:picks.map(function(p){return p[1];}),items:shuffle(picks).map(function(p){return {t:p[0],c:p[1]};}),
+    hint:'Think about what each application is used for.',sol:picks.map(function(p){return p[0]+' → '+p[1];}).join('; ')+'.'};}
+  var d3=fromPool([
+    {prompt:'A hospital needs a radioactive tracer that a camera <b>outside</b> the body can detect. Which radiation should the tracer give off, and why?',answer:'Gamma, because it can pass out through the body to reach the camera.',options:['Gamma, because it can pass out through the body to reach the camera.','Alpha, because it is stopped by skin.','Alpha, because it has the most mass.','Beta, because it is stopped by paper.'],hint:'Which radiation can travel through tissue?',sol:'Alpha and beta are stopped quickly; <b>gamma</b> penetrates the body, so an outside camera can detect it. Choose the radiation by its <b>penetrating ability</b>.'},
+    {prompt:'Smoke detectors contain a tiny amount of an alpha emitter (americium-241). Why is it reasonably safe to have one on the ceiling?',answer:'Alpha particles are stopped by air, paper or skin, so they do not reach people unless the source is swallowed or inhaled.',options:['Alpha particles are stopped by air, paper or skin, so they do not reach people unless the source is swallowed or inhaled.','Alpha particles are the most penetrating radiation, so they pass harmlessly through people.','Americium is not radioactive.','Alpha particles turn into gamma rays in air.'],hint:'How far can alpha particles travel?',sol:'Alpha has the <b>lowest penetrating ability</b>; the plastic case and a little air stop it. The risk comes only if the source gets inside the body.'},
+    {prompt:'A town is deciding whether to build a nuclear power plant. Which argument uses evidence from <b>both</b> sides?',answer:'It would make lots of energy from little fuel with no greenhouse gases, but the town must plan for radioactive waste storage and worker safety.',options:['It would make lots of energy from little fuel with no greenhouse gases, but the town must plan for radioactive waste storage and worker safety.','Nuclear power is always dangerous, so it should never be built.','Nuclear power has no drawbacks, so it should definitely be built.','It should be built because fusion plants make no waste.'],hint:'A strong decision weighs a benefit and a drawback.',sol:'A justified decision weighs <b>benefits</b> (energy, no greenhouse gases) against <b>risks</b> (radioactive waste, worker exposure, accidents if poorly maintained).'},
+    {prompt:'Workers who handle a gamma source wear dosimeters and work behind thick lead or concrete. Why?',answer:'Gamma rays penetrate deeply, so only thick dense shielding blocks them, and dosimeters track total exposure.',options:['Gamma rays penetrate deeply, so only thick dense shielding blocks them, and dosimeters track total exposure.','Gamma rays are stopped by paper, so lead is just extra.','Gamma rays are harmless energy.','Lead turns gamma rays into alpha particles.'],hint:'Match the shielding to the penetrating ability.',sol:'<b>Gamma</b> is the most penetrating radiation, so it needs thick lead or concrete. Limiting exposure protects workers.'},
+    {prompt:'A space probe going far from the Sun needs power for decades. Why might engineers use a radioactive isotope with a long half-life?',answer:'A long half-life means it keeps decaying and giving off energy for many years, where solar panels would get too little sunlight.',options:['A long half-life means it keeps decaying and giving off energy for many years, where solar panels would get too little sunlight.','A long half-life means it decays all at once for a big burst of power.','Radioactive isotopes need sunlight to work.','A long half-life means it gives off no radiation.'],hint:'Half-life tells how long the source keeps decaying.',sol:'With a long half-life, the isotope keeps releasing energy for <b>years</b>. A drawback: launch accidents could spread radioactive material.'}
+  ],'D','3.0');
+  var d4=fromPool([
+    {prompt:'Which statement about the risks of radiation is most accurate?',answer:'Risk depends on the type of radiation, the amount, the time exposed and whether the source is inside or outside the body.',options:['Risk depends on the type of radiation, the amount, the time exposed and whether the source is inside or outside the body.','All radiation is equally dangerous in every situation.','Radiation is only dangerous from nuclear weapons.','Radiation cannot harm living cells.'],hint:'Think about why alpha is safe on the ceiling but dangerous if inhaled.',sol:'Risk depends on <b>type, amount, time and location</b>. Marie Curie’s death from overexposure shows long exposure matters.'},
+    {prompt:'Why does radioactive waste from a fission reactor need to be stored for a long time?',answer:'Some waste isotopes have long half-lives, so they keep giving off radiation for many years.',options:['Some waste isotopes have long half-lives, so they keep giving off radiation for many years.','The waste turns into fuel after storage.','The waste stops being radioactive after one day.','The waste needs time to fuse into helium.'],hint:'What does half-life tell you?',sol:'Waste stays radioactive for many <b>half-lives</b>; long half-lives mean long storage times.'},
+    {prompt:'A student claims nuclear fusion power would make no radioactive waste. Using the notes, is that claim supported?',answer:'Yes: the notes state that fusion releases no radioactive waste, though it needs enormous energy to start.',options:['Yes: the notes state that fusion releases no radioactive waste, though it needs enormous energy to start.','No: fusion makes more waste than fission.','No: fusion is the same as fission.','Yes: and fusion needs no energy to start.'],hint:'Compare the fission and fusion slides.',sol:'Fusion: <b>no radioactive waste</b> (per the notes) but <b>insane amounts of energy</b> needed, which is why it is still being researched.'}
+  ],'D','3.0');
+
+  function d5(){var h=pick(HL.filter(function(x){return x[2]!=='years'||x[1]<40;})),n=R(2,6),t=n*h[1],pct=100/Math.pow(2,n);
+    return {std:'D',lvl:'3.0',type:'num',prompt:'A '+(h[2]==='years'?'source':'medical tracer')+' uses '+h[0]+' (half-life <b>'+h[1]+' '+h[2]+'</b>). What <b>percent</b> of the original '+h[0]+' is still there after <b>'+r2(t)+' '+h[2]+'</b>? Use this to judge how long the exposure lasts.',answer:r2(pct),unit:'%',tol:0.02,
+      hint:'Count the half-lives (time ÷ half-life). Each one halves the percent: 100 → 50 → 25 → …',
+      sol:r2(t)+' ÷ '+h[1]+' = '+n+' half-lives. 100% '+Array.apply(null,{length:n}).map(function(_,i){return '→ '+r2(100/Math.pow(2,i+1))+'%';}).join(' ')+'. <b>'+r2(pct)+'%</b> remains. '+(h[2]==='hours'||h[2]==='days'?'A short half-life means exposure drops off quickly.':'A long half-life means the material stays radioactive for a long time.'),params:{n:n}};}
+
+  // ---------- Honors: nuclear equations ----------
+  var honors=[
+    function(){var e=pick(ALPHA),Z=e[0],A=e[1],ask=pick(['A','Z']);var ans=ask==='A'?A-4:Z-2;
+      return {std:'B',lvl:'Honors',type:'num',prompt:'Complete the equation: <b><sup>'+A+'</sup><sub>'+Z+'</sub>'+EL[Z][0]+' → <sup>4</sup><sub>2</sub>He + <sup>?</sup><sub>?</sub>X</b>. What is the missing <b>'+(ask==='A'?'mass number':'atomic number')+'</b>?',answer:ans,unit:'',tol:0.005,
+        hint:'Mass numbers on the left must add up to the mass numbers on the right. Same for atomic numbers.',
+        sol:(ask==='A'?A+' = 4 + ? → ? = ':Z+' = 2 + ? → ? = ')+'<b>'+ans+'</b>. X is '+EL[Z-2][1]+' ('+EL[Z-2][0]+'-'+(A-4)+').',params:{Z:Z,A:A,ask:ask}};},
+    function(){var e=pick(BETA),Z=e[0],A=e[1];
+      return {std:'B',lvl:'Honors',type:'num',prompt:'Complete the equation: <b><sup>'+A+'</sup><sub>'+Z+'</sub>'+EL[Z][0]+' → <sup>0</sup><sub>−1</sub>e + <sup>'+A+'</sup><sub>?</sub>X</b>. What is the atomic number of X?',answer:Z+1,unit:'',tol:0.005,
+        hint:'The atomic numbers must balance: '+Z+' = −1 + ?',sol:Z+' = −1 + ? → ? = <b>'+(Z+1)+'</b>. X is '+EL[Z+1][1]+'-'+A+'.',params:{Z:Z,A:A}};},
+    function(){var v=pick([[4,9,2,4,6,12],[13,27,2,4,15,30],[7,14,2,4,8,17]]);// Z1,A1,Z2,A2 + product Z,A with a neutron (except N case gives proton)
+      var tZ=v[0],tA=v[1];
+      if(tZ===7){return {std:'B',lvl:'Honors',type:'num',prompt:'Complete the equation: <b><sup>14</sup><sub>7</sub>N + <sup>4</sup><sub>2</sub>He → <sup>?</sup><sub>8</sub>O + <sup>1</sup><sub>1</sub>H</b>. What is the missing mass number?',answer:17,unit:'',tol:0.005,hint:'14 + 4 = ? + 1',sol:'14 + 4 = 18 = ? + 1 → <b>17</b> (oxygen-17).',params:{}};}
+      var pA=tA+4-1,pZ=tZ+2;
+      return {std:'B',lvl:'Honors',type:'num',prompt:'Complete the equation: <b><sup>'+tA+'</sup><sub>'+tZ+'</sub>'+(tZ===4?'Be':'Al')+' + <sup>4</sup><sub>2</sub>He → <sup>?</sup><sub>'+pZ+'</sub>X + <sup>1</sup><sub>0</sub>n</b>. What is the missing mass number?',answer:pA,unit:'',tol:0.005,
+        hint:tA+' + 4 = ? + 1',sol:tA+' + 4 = '+(tA+4)+' = ? + 1 → <b>'+pA+'</b>. With atomic number '+pZ+', X is '+(pZ===6?'carbon-12':'phosphorus-30')+'.',params:{}};}
+  ];
+
+  var TOPICS=[
+    {id:'A',name:'Nuclear vs. chemical & stability',short:'Stability',practice:[a2,a4,a5,a3,a6],mastery:[a1,function(){return Math.random()<0.5?a3():a6();}]},
+    {id:'B',name:'Radioactive decay & half-life',short:'Decay',practice:[b1,b5,b2,b3,b4],mastery:[b2,b3]},
+    {id:'C',name:'Fission & fusion',short:'Fission & fusion',practice:[c1,c2,c5,c3,c4],mastery:[c1,c4]},
+    {id:'D',name:'Applications & risks',short:'Applications',practice:[d1,d2,d3,d4,d5],mastery:[d1,d3]}
+  ];
+  return {TOPICS:TOPICS,honors:honors,shuffle:shuffle,R:R,pick:pick,EL:EL};
+})();
+
+
+</script>
+<script>
+var GRADE=(function(){
+  function lev(a,b){var m=a.length,n=b.length,d=[];for(var i=0;i<=m;i++){d[i]=[i];}for(var j=0;j<=n;j++)d[0][j]=j;
+    for(i=1;i<=m;i++)for(j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
+  function norm(s){return String(s).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9 ]+/g,' ').replace(/\b(the|a|an)\b/g,' ').replace(/\s+/g,' ').trim();}
+  function parseNum(s){
+    s=String(s).replace(/[\u2212\u2013\u2014]/g,'-').replace(/,/g,'').replace(/\s+/g,'');
+    var m=s.match(/[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?/i);
+    if(!m)return NaN; return parseFloat(m[0]);
+  }
+  // returns {ok, msg}
+  function checkNum(input,ans,tol){
+    var v=parseNum(input); if(isNaN(v))return {ok:false,blank:true,msg:'Type a number.'};
+    tol=tol||0.02; var abs=Math.max(Math.abs(ans)*tol,0.005);
+    if(Math.abs(v-ans)<=abs)return {ok:true};
+    if(ans!==0&&Math.abs(-v-ans)<=abs)return {ok:false,msg:'Right size, wrong sign. Check whether it went up (+) or down (−).'};
+    if(Math.abs(v-ans)<=Math.max(Math.abs(ans)*0.08,0.01))return {ok:false,msg:'Very close. Check your rounding.'};
+    return {ok:false,msg:'Not yet.'};
+  }
+  function checkAngle(input,ans){
+    var v=parseNum(input); if(isNaN(v))return {ok:false,blank:true,msg:'Type an angle in degrees.'};
+    function d(a,b){var x=((a-b)%360+540)%360-180;return Math.abs(x);}
+    if(d(v,ans)<=1.0)return {ok:true};
+    if(d(v+180,ans)<=1.0)return {ok:false,msg:'You are 180° off. Check the quadrant: are x and y positive or negative?'};
+    if(d(-v,ans)<=1.0)return {ok:false,msg:'Right reference angle, wrong quadrant. Check the sign of y (up is +, down is −).'};
+    if(d(180-v,ans)<=1.0)return {ok:false,msg:'Right reference angle, wrong quadrant. Check the sign of x (right is +, left is −).'};
+    if(d(90-v,ans)<=1.0||d(v-90,ans)<=1.0&&d(v,ans)>5)return {ok:false,msg:'It looks like you measured from the y-axis. Measure counterclockwise from +x (east).'};
+    if(d(v,ans)<=3.0)return {ok:false,msg:'Very close. Check your rounding.'};
+    return {ok:false,msg:'Not yet.'};
+  }
+  function checkText(input,accept){
+    var t=norm(input); if(!t)return {ok:false,blank:true,msg:'Type an answer.'};
+    for(var i=0;i<accept.length;i++){var a=norm(accept[i]); if(t===a)return {ok:true};
+      var lim=a.length>=9?2:(a.length>=5?1:0); if(lim&&lev(t,a)<=lim)return {ok:true,msg:'Accepted. Watch the spelling: '+accept[i]+'.'};}
+    return {ok:false,msg:'Not yet.'};
+  }
+  return {parseNum:parseNum,checkNum:checkNum,checkAngle:checkAngle,checkText:checkText,norm:norm,lev:lev};
+})();
+
+
+</script>
+<script>
+(function(){
+var T=BANK.TOPICS, $=function(id){return document.getElementById(id);};
+var S={name:'',start:null,screen:0,prac:{},mastery:null,mres:null,more:null,honors:null};
+
+// ---------- static content ----------
+var TERMS=[
+ ['Nuclear chemistry','The study of changes to the nucleus of an atom. A nuclear reaction changes the nucleus (radioactive decay, fission, fusion).'],
+ ['Nuclear vs. chemical reaction','Nuclear: the nucleus changes, so the element can change. Chemical: electrons are gained, lost or shared; the nucleus and the element stay the same.'],
+ ['Stable nucleus','A balance of protons and neutrons, held by the strong nuclear force. Bigger atoms need more neutrons. Above about 83 protons, proton repulsion wins and the nucleus is unstable.'],
+ ['Isotope / radioactive isotope','Isotopes: same element, different neutrons. Radioactive isotopes have excess nuclear energy, so they are unstable and more likely to decay.'],
+ ['Radioactive decay','The spontaneous process by which an unstable nucleus can no longer hold itself together, so it loses energy and matter by emitting radiation.'],
+ ['Radiation / radioactivity','Radiation: the small particles and rays released during a nuclear reaction. Radioactivity: the emission of radiation.'],
+ ['Alpha (α)','2 p⁺ + 2 n⁰ (a helium-4 nucleus). Atomic number −2, mass number −4. Stopped by paper or skin.'],
+ ['Beta (β)','1 e⁻. A neutron splits into a proton and an electron; the electron leaves. Atomic number +1, mass number unchanged. Stopped by thin aluminum.'],
+ ['Gamma (γ)','Electromagnetic energy. No change in atomic or mass number. Often comes with alpha or beta. Needs thick lead or concrete.'],
+ ['Half-life','The time for half of the unstable nuclei in a sample to decay. After each half-life the amount is cut in half: 100% → 50% → 25% → 12.5% …'],
+ ['Fission','Splitting 1 larger atom into 2 or more smaller ones. Can happen on its own or when a neutron hits the nucleus. Can cause chain reactions. Used in nuclear reactors. Makes radioactive waste.'],
+ ['Fusion','Combining 2 or more lighter atoms into a larger one. Happens in stars; needs huge energy; makes no radioactive waste. Example: ¹H + ²H → ³He + energy.'],
+ ['Chain reaction','An ongoing series of reactions, causing an exponential result.'],
+ ['Nucleosynthesis','The formation of new elements through nuclear chemistry. The Sun makes helium; heavier elements (iron, gold) come from bigger, hotter stars and their explosions.'],
+ ['Counting particles','Protons = atomic number. Neutrons = mass number − atomic number.'],
+ ['Applications','Power plants, cancer treatment, carbon dating, medical imaging tracers, space probe power, criminology, agriculture, food irradiation, weapons. Every use has benefits and drawbacks.']
+];
+function termsHTML(){return '<dl>'+TERMS.map(function(t){return '<dt>'+t[0]+'</dt><dd>'+t[1]+'</dd>';}).join('')+'</dl>';}
+
+var SVG_PEN='<svg viewBox="0 0 320 150" role="img" aria-label="Alpha stopped by paper, beta stopped by aluminum, gamma stopped by thick lead" style="max-width:360px;width:100%;display:block;margin:6px auto"><g font-family="system-ui,sans-serif" font-size="13" fill="var(--ink)"><text x="4" y="34">α</text><text x="4" y="79">β</text><text x="4" y="124">γ</text><text x="92" y="146">paper</text><text x="158" y="146">aluminum</text><text x="242" y="146">lead</text></g><rect x="100" y="12" width="6" height="122" fill="var(--muted)" opacity=".6"/><rect x="170" y="12" width="10" height="122" fill="var(--muted)" opacity=".8"/><rect x="240" y="12" width="34" height="122" fill="var(--ink)" opacity=".55"/><g stroke="var(--accent)" stroke-width="3"><line x1="20" y1="30" x2="96" y2="30"/><line x1="20" y1="75" x2="166" y2="75"/><path d="M20 120 q8 -8 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0" fill="none"/></g></svg>';
+
+var LEARN={
+A:'<p class="secmeta">NC1 · Nuclear vs. chemical &amp; stability · Learn · about 4 minutes</p><h1>Nuclear vs. chemical &amp; stability</h1>'+
+'<div class="panel"><h2>Where the change happens</h2><p><b>Nuclear chemistry</b> is the study of changes to the <b>nucleus</b>. When the nucleus changes, a nuclear reaction happens: radioactive decay, fission or fusion. A <b>chemical</b> reaction is different: electrons are gained, lost or shared, and the nucleus does not change.</p>'+
+'<div class="tw"><table><tr><th></th><th>Chemical reaction</th><th>Nuclear reaction</th></tr><tr><td>What changes</td><td>Electrons</td><td>Protons and/or neutrons</td></tr><tr><td>Same element after?</td><td>Yes</td><td>Often no (protons change)</td></tr><tr><td>Energy</td><td>Smaller</td><td>Massive</td></tr></table></div></div>'+
+'<div class="panel"><h2>Why some nuclei are unstable</h2><p>The nucleus is held together by the <b>strong nuclear force</b> between quarks, even though protons repel each other. A <b>stable</b> nucleus has a balance of protons and neutrons, and bigger atoms need more neutrons. The strong force only works over a <b>short distance</b>, so in a very big nucleus (more than about 83 protons) the repulsion between protons wins. <b>Radioactive isotopes</b> have excess nuclear energy, so they are unstable and more likely to decay.</p></div>'+
+'<div class="move"><h3>The 3.0 move: explain the cause, not just the name</h3><p>Use a chain: <b>what is unbalanced in the nucleus → which force wins → what the nucleus does about it → what that produces</b>. “Uranium is radioactive” is 2.0. “Uranium has 92 protons, so proton repulsion beats the short-range strong force, so the nucleus emits radiation to become more stable” is 3.0.</p></div>'+
+'<div class="ex"><h3>Worked example 1: carbon-12 vs. carbon-14</h3><p>Both have 6 protons. Carbon-12 has 6 neutrons; carbon-14 has 14 − 6 = <b>8</b>. The extra neutrons unbalance the nucleus, so carbon-14 is a radioactive isotope. It decays into nitrogen-14 (7 protons): a new element, because the nucleus changed.</p></div>'+
+'<div class="ex"><h3>Worked example 2: nuclear or chemical?</h3><p>Burning methane: carbon and hydrogen atoms rearrange their bonds (electrons). The atoms afterward are still carbon, hydrogen and oxygen: <b>chemical</b>. Radium-226 becoming radon-222: the number of protons dropped from 88 to 86: <b>nuclear</b>.</p></div>'+
+'<div class="miss"><h3>Ideas students usually miss</h3><ul><li>Protons decide the element. Change the protons and you change the element.</li><li>Isotopes are not all radioactive; only unstable ones are.</li><li>The strong nuclear force is strong but short-range; that is why big nuclei fall apart.</li></ul></div>',
+
+B:'<p class="secmeta">NC1 · Radioactive decay &amp; half-life · Learn · about 4 minutes</p><h1>Radioactive decay &amp; half-life</h1>'+
+'<div class="panel"><h2>Three kinds of radiation</h2><p><b>Radioactive decay</b> is spontaneous: an unstable nucleus can no longer hold itself together, so it loses energy and matter by emitting <b>radiation</b>.</p>'+
+'<div class="tw"><table><tr><th></th><th>Alpha</th><th>Beta</th><th>Gamma</th></tr><tr><td>Symbol</td><td>α</td><td>β</td><td>γ</td></tr><tr><td>What is released</td><td>2 p⁺ + 2 n⁰</td><td>1 e⁻ (a neutron → proton + electron)</td><td>Electromagnetic energy</td></tr><tr><td>Atomic number</td><td>−2</td><td>+1</td><td>no change</td></tr><tr><td>Mass number</td><td>−4</td><td>no change</td><td>no change</td></tr><tr><td>Stopped by</td><td>Paper or skin</td><td>Thin aluminum</td><td>Thick lead or concrete</td></tr></table></div>'+SVG_PEN+
+'<p>Examples from your notes: ²³⁸U → ⁴He + ²³⁴Th (alpha) and ¹⁴C → ⁰₋₁e + ¹⁴N (beta).</p></div>'+
+'<div class="panel"><h2>Half-life</h2><p>The <b>half-life</b> is the time for <b>half of the unstable nuclei in a sample</b> to decay. It is the same every time, so you can count by halves: 100% → 50% → 25% → 12.5% → 6.25%. Carbon-14’s half-life is 5,730 years, which is how radioactive dating finds the age of old samples.</p><p><b>Steps:</b> number of half-lives = time ÷ half-life. Then cut the amount in half that many times.</p></div>'+
+'<div class="move"><h3>The 3.0 move: follow the particles</h3><p>Ask “what left the nucleus?” Alpha takes 2 protons and 2 neutrons, so the element drops 2 places on the periodic table. Beta turns a neutron into a proton, so the element moves up 1. Gamma only carries away energy. Use those changes as <b>evidence</b> to name the decay.</p></div>'+
+'<div class="ex"><h3>Worked example 1: what does alpha decay make?</h3><p>Thorium-232 (atomic number 90) gives off an alpha particle. New atomic number: 90 − 2 = <b>88</b> (radium). New mass number: 232 − 4 = <b>228</b>. Product: radium-228.</p></div>'+
+'<div class="ex"><h3>Worked example 2: half-life</h3><p>Iodine-131 has a half-life of 8 days. Start with 40 g. After 24 days: 24 ÷ 8 = 3 half-lives. 40 → 20 → 10 → <b>5 g</b> left.</p></div>'+
+'<div class="ex"><h3>Worked example 3: identify the radiation</h3><p>Paper does not block it, but thin aluminum does. Not alpha (paper would stop it), not gamma (aluminum would not stop it): <b>beta</b>.</p></div>'+
+'<div class="miss"><h3>Ideas students usually miss</h3><ul><li>Half-life is about half of a <b>sample</b>, not half of one atom.</li><li>After two half-lives, ¼ is left, not none.</li><li>Beta decay raises the atomic number even though an electron leaves.</li><li>Gamma has the least mass but goes the farthest.</li></ul></div>',
+
+C:'<p class="secmeta">NC1 · Fission &amp; fusion · Learn · about 4 minutes</p><h1>Fission &amp; fusion</h1>'+
+'<div class="panel"><div class="tw"><table><tr><th></th><th>Fission</th><th>Fusion</th></tr><tr><td>What happens</td><td>1 larger atom splits into 2 or more smaller ones</td><td>2 or more lighter atoms combine into 1 larger one</td></tr><tr><td>How it starts</td><td>On its own, or a neutron is fired into the nucleus</td><td>Huge energy (star conditions)</td></tr><tr><td>Where</td><td>Nuclear power plants (reactors)</td><td>Stars, like the Sun</td></tr><tr><td>Products</td><td>Smaller nuclei, neutrons, radioactive waste</td><td>A larger nucleus, no radioactive waste</td></tr><tr><td>Energy</td><td>Tons of energy from very little fuel</td><td>The Sun’s energy (sunlight)</td></tr><tr><td>Special feature</td><td>Can cause a <b>chain reaction</b></td><td>Makes new elements: <b>nucleosynthesis</b></td></tr></table></div>'+
+'<p><b>Chain reaction:</b> an ongoing series of reactions causing an exponential result. Neutrons from one fission split more nuclei, which release more neutrons.</p><p><b>Nucleosynthesis:</b> the formation of new elements through nuclear reactions. The Sun is only hot enough to make helium; heavier elements (iron, gold) were made in bigger, hotter stars that exploded billions of years ago.</p></div>'+
+'<div class="move"><h3>The 3.0 move: compare on three things</h3><p>When you compare decay, fission and fusion, always cover <b>radiation or particles released</b>, <b>products</b>, and <b>energy</b>. Then connect to a use or a risk.</p></div>'+
+'<div class="ex"><h3>Worked example 1: a chain reaction in numbers</h3><p>If each fission causes 2 more: 1 → 2 → 4 → 8 → 16 → 32. After 10 rounds there are 1,024 fissions at once. That exponential growth gives huge energy, and it is why reactors must control it.</p></div>'+
+'<div class="ex"><h3>Worked example 2: why reactors use fission</h3><p>Fusion needs star-like energy to start, so it is still being researched. Fission can be started by a neutron, so power plants use it, accepting the drawback of radioactive waste.</p></div>'+
+'<div class="miss"><h3>Ideas students usually miss</h3><ul><li><b>Fission</b> splits (think “fissure,” a crack); <b>fusion</b> fuses.</li><li>The Sun uses fusion, not fission.</li><li>Fusion makes no radioactive waste (according to your notes) but is hard to start.</li></ul></div>',
+
+D:'<p class="secmeta">NC1 · Applications &amp; risks · Learn · about 4 minutes</p><h1>Applications &amp; risks</h1>'+
+'<div class="panel"><h2>Uses from your research project</h2><div class="tw"><table><tr><th>Use</th><th>Benefit</th><th>Drawback</th></tr>'+
+'<tr><td>Nuclear power (fission)</td><td>Lots of energy from little fuel; no greenhouse gases</td><td>Radioactive waste; water pollution; worker exposure; accidents (Chernobyl)</td></tr>'+
+'<tr><td>Cancer treatment</td><td>Kills cancer cells</td><td>Can damage healthy cells; waste must be stored</td></tr>'+
+'<tr><td>Radioactive dating</td><td>Finds the age of samples</td><td>Samples can be contaminated</td></tr>'+
+'<tr><td>Medical imaging tracers</td><td>Shows how organs work</td><td>Patient is exposed to radiation</td></tr>'+
+'<tr><td>Space exploration power</td><td>Long-lasting power far from the Sun</td><td>Launch accidents could spread radioactive material</td></tr>'+
+'<tr><td>Nuclear weapons</td><td>(Deterrence is debated)</td><td>Massive destruction and fallout</td></tr></table></div></div>'+
+'<div class="panel"><h2>Using evidence to judge a use</h2><p>Match the <b>type of radiation</b> to the job using penetrating ability: something a camera must detect from outside the body needs gamma; an alpha source is safe behind a cover but dangerous if swallowed or inhaled. Use <b>half-life</b> to judge how long a risk lasts: a 6-hour tracer is mostly gone in a couple of days; waste with a long half-life must be stored for many years.</p></div>'+
+'<div class="move"><h3>The 3.0 move: claim, evidence, reasoning</h3><p><b>Claim:</b> “This isotope is a good choice for …” <b>Evidence:</b> its radiation type and half-life. <b>Reasoning:</b> how those properties produce the benefit and how big the risk is. Always name one benefit <i>and</i> one drawback.</p></div>'+
+'<div class="ex"><h3>Worked example 1: picking a tracer</h3><p>Technetium-99m gives off gamma rays and has a 6-hour half-life. Gamma passes out of the body, so a camera can see it. After 24 hours (4 half-lives) only 100% → 50 → 25 → 12.5 → <b>6.25%</b> is left, so exposure is short. Drawback: the patient still receives some radiation.</p></div>'+
+'<div class="ex"><h3>Worked example 2: a smoke detector</h3><p>Americium-241 is an alpha emitter. Alpha is stopped by air, paper or skin, so the detector is safe on the ceiling. The risk appears only if the source is broken open and swallowed or inhaled.</p></div>'+
+'<div class="miss"><h3>Ideas students usually miss</h3><ul><li>“Radiation is always deadly” and “radiation is harmless” are both wrong; the risk depends on type, amount, time and whether it is inside the body.</li><li>A good answer gives a benefit <b>and</b> a drawback.</li><li>Long half-life = long-lasting source (good for space power, bad for waste).</li></ul></div>'
+};
+
+var TOOLKIT='<p class="secmeta">Toolkit · about 2 minutes</p><h1>How to think about a nuclear question</h1>'+
+'<div class="panel"><ol><li><b>Nucleus or electrons?</b> Decide if the change is nuclear or chemical.</li><li><b>What left or joined the nucleus?</b> α (2p + 2n), β (1 e⁻ from a neutron), γ (energy), split (fission), combine (fusion).</li><li><b>Count it.</b> Protons = atomic number; neutrons = mass − atomic number. For half-life: number of half-lives = time ÷ half-life, then halve.</li><li><b>Compare</b> radiation, products and energy.</li><li><b>Use evidence</b> (penetrating ability, half-life, waste) to explain a use or a risk, with a benefit and a drawback.</li></ol>'+
+'<p>Have scratch paper; a calculator helps for halving. The <b>Reference sheet</b> button at the top stays on every screen.</p></div>'+
+'<div class="panel"><h2>Typing answers</h2><ul><li>Numbers only; units are optional (“5” or “5 g”).</li><li>Terms: spelling close enough is accepted (for example “nucleosynthesis”).</li></ul></div>';
+
+// ---------- screens ----------
+var SCREENS=['start','toolkit'];
+T.forEach(function(t){SCREENS.push('learn:'+t.id);SCREENS.push('prac:'+t.id);});
+SCREENS.push('mastery','results');
+
+function dots(){var el=$('dots');el.innerHTML='';var i=S.screen;var main=SCREENS.length;
+  for(var k=0;k<main;k++){var d=document.createElement('span');d.className='dot'+(k<i?' done':'')+(k===i?' now':'');d.title=label(SCREENS[k]);el.appendChild(d);} }
+function label(s){if(s==='start')return 'Start';if(s==='toolkit')return 'Toolkit';if(s==='mastery')return 'Mastery check';if(s==='results')return 'Results';var p=s.split(':');var t=T.filter(function(x){return x.id===p[1];})[0];return (p[0]==='learn'?'Learn: ':'Practice: ')+t.name;}
+function go(i){S.screen=i;render();window.scrollTo(0,0);var h=$('main').querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});}}
+function nav(prevOk,nextLabel,nextFn){var d=document.createElement('div');d.className='nav';
+  var b=document.createElement('button');b.className='btn';b.type='button';b.textContent='Back';b.disabled=!prevOk;b.onclick=function(){go(S.screen-1);};
+  var n=document.createElement('button');n.className='btn primary';n.type='button';n.textContent=nextLabel||'Next';n.onclick=nextFn||function(){go(S.screen+1);};
+  d.appendChild(b);d.appendChild(n);return d;}
+
+function render(){
+  dots();var m=$('main');m.innerHTML='';var s=SCREENS[S.screen];
+  if(S.more){renderMore(m);return;}
+  if(S.honors){renderHonors(m);return;}
+  if(s==='start')return renderStart(m);
+  if(s==='toolkit'){m.insertAdjacentHTML('beforeend',TOOLKIT);m.appendChild(nav(true,'Start topic 1'));return;}
+  var p=s.split(':');
+  if(p[0]==='learn'){m.insertAdjacentHTML('beforeend',LEARN[p[1]]);m.appendChild(nav(true,'Practice'));return;}
+  if(p[0]==='prac')return renderPractice(m,p[1]);
+  if(s==='mastery')return renderMastery(m);
+  if(s==='results')return renderResults(m);
+}
+
+function renderStart(m){
+  m.insertAdjacentHTML('beforeend','<p class="secmeta">Chemistry · Unit 2 The Atom · Standard NC1</p><h1>Nuclear chemistry review</h1>'+
+  '<div class="panel"><p>This review reteaches nuclear chemistry (standard NC1) and lets you practice with instant feedback. It takes about <b>45 minutes</b>. Work on your own; you can go back to any page.</p>'+
+  '<p>Each topic has a short <b>Learn</b> page and a <b>Practice</b> set. Practice gives you 3 tries, a hint, and a worked solution. At the end, an 8-question <b>Mastery check</b> shows what to review. Have scratch paper ready; a calculator helps with half-life problems.</p>'+
+  '<div class="namebox"><label for="nm">Your name (optional, only used on your results):</label><input type="text" id="nm" autocomplete="off"></div></div>'+
+  '<div class="lens">'+T.map(function(t){return '<div class="cellcard"><b>'+t.name+'</b><span>'+t.short+' · Learn 4 min + Practice 5 min</span></div>';}).join('')+'</div>'+
+  '<div class="panel"><h2>Plan</h2><div class="tw"><table><tr><th>Part</th><th>Minutes</th></tr><tr><td>Toolkit: how to think about a nuclear question</td><td>2</td></tr>'+T.map(function(t){return '<tr><td>'+t.name+'</td><td>9</td></tr>';}).join('')+'<tr><td>Mastery check (8 questions, one try each)</td><td>8</td></tr><tr><td>Results and next steps</td><td>about 1</td></tr><tr><td><b>Total</b></td><td><b>about 47</b></td></tr></table></div></div>');
+  var nm=$('nm');nm.value=S.name;nm.oninput=function(){S.name=nm.value;};
+  var d=document.createElement('div');d.className='nav';var b=document.createElement('button');b.className='btn primary';b.type='button';b.textContent='Start the review';
+  b.onclick=function(){if(!S.start)S.start=Date.now();go(1);};d.appendChild(document.createElement('span'));d.appendChild(b);m.appendChild(d);
+}
+
+// ---------- question rendering ----------
+function newQ(gen,prevPrompt){var q,k=0;do{q=gen();k++;}while(prevPrompt&&q.prompt===prevPrompt&&k<8);
+  if(q.type==='mc'){q.shown=q.keepOrder?q.options.slice():BANK.shuffle(q.options);}
+  if(q.type==='order'){var sh;var c=0;do{sh=BANK.shuffle(q.items);c++;}while(sh.join('|')===q.items.join('|')&&c<10);q.shown=sh;}
+  return q;}
+
+// opts: {num, maxTries, hints, onDone(correctFirstTry,correct), regen}
+function qCard(q,o){
+  var card=document.createElement('div');card.className='q';
+  var tries=0,done=false,sel=null,picked=[];
+  var lv=q.lvl==='3.0'?'l3':'l2';
+  card.innerHTML='<div class="qhead"><span class="qnum">'+(o.num||'')+'</span><span class="lvl '+lv+'">'+(q.lvl==='Honors'?'Honors':'Level '+q.lvl)+'</span><span class="tries"></span></div><div class="prompt">'+q.prompt+'</div><div class="body"></div><div class="row ctl"></div><div class="fb" aria-live="polite"></div>';
+  var body=card.querySelector('.body'),ctl=card.querySelector('.ctl'),fb=card.querySelector('.fb'),tr=card.querySelector('.tries');
+  function setTries(){tr.textContent=done?'':(o.maxTries>1?'Try '+(tries+1)+' of '+o.maxTries:'One try');}
+  var input;
+  if(q.type==='mc'){var box=document.createElement('div');box.className='opts';q.shown.forEach(function(t,i){var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=t;b.onclick=function(){if(done)return;sel=i;[].forEach.call(box.children,function(c){c.classList.remove('sel','wrong');});b.classList.add('sel');};box.appendChild(b);});body.appendChild(box);}
+  if(q.type==='num'||q.type==='text'){var r=document.createElement('div');r.className='row';input=document.createElement('input');input.type='text';input.className='ans';input.setAttribute('aria-label','Your answer');r.appendChild(input);if(q.unit){var u=document.createElement('span');u.className='unit';u.textContent=q.unit;r.appendChild(u);}body.appendChild(r);input.addEventListener('keydown',function(e){if(e.key==='Enter')check();});}
+  var selects=[];
+  if(q.type==='classify'){var cl=document.createElement('div');cl.className='cls';q.items.forEach(function(it,i){var row=document.createElement('div');row.className='clsrow';var sp=document.createElement('span');sp.textContent=it.t;var s=document.createElement('select');s.setAttribute('aria-label',it.t);s.innerHTML='<option value="">Choose…</option>'+q.cats.map(function(c){return '<option>'+c+'</option>';}).join('');row.appendChild(sp);row.appendChild(s);cl.appendChild(row);selects.push(s);});body.appendChild(cl);}
+  var pickBox,bankBox;
+  if(q.type==='order'){body.insertAdjacentHTML('beforeend','<p class="muted" style="margin:.4em 0 0">Tap the items in order. Your order:</p>');pickBox=document.createElement('div');pickBox.className='ordpick';body.appendChild(pickBox);bankBox=document.createElement('div');bankBox.className='ordbank';body.appendChild(bankBox);
+    var clr=document.createElement('button');clr.type='button';clr.className='btn small';clr.textContent='Clear my order';clr.onclick=function(){if(done)return;picked=[];drawOrder();};body.appendChild(clr);drawOrder();}
+  function drawOrder(){pickBox.innerHTML=picked.length?'<ol>'+picked.map(function(i){return '<li>'+esc(q.shown[i])+'</li>';}).join('')+'</ol>':'<span class="muted">Nothing yet.</span>';bankBox.innerHTML='';
+    q.shown.forEach(function(t,i){if(picked.indexOf(i)>=0)return;var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=t;b.onclick=function(){if(done)return;picked.push(i);drawOrder();};bankBox.appendChild(b);});}
+  var chk=document.createElement('button');chk.type='button';chk.className='btn primary';chk.textContent='Check';chk.onclick=check;ctl.appendChild(chk);
+  var hb=null;if(o.hints&&q.hint){hb=document.createElement('button');hb.type='button';hb.className='btn';hb.textContent='Hint';hb.onclick=function(){fb.className='fb hint';fb.innerHTML='<b>Hint:</b> '+q.hint;};ctl.appendChild(hb);}
+  var again=null;if(o.regen){again=document.createElement('button');again.type='button';again.className='btn';again.textContent='Try another like this';again.onclick=function(){o.regen(card);};ctl.appendChild(again);}
+  setTries();
+  function grade(){
+    if(q.type==='mc'){if(sel===null)return {blank:true,msg:'Pick an answer.'};return {ok:q.shown[sel]===q.answer};}
+    if(q.type==='num')return q.angle?GRADE.checkAngle(input.value,q.answer):GRADE.checkNum(input.value,q.answer,q.tol);
+    if(q.type==='text')return GRADE.checkText(input.value,q.accept);
+    if(q.type==='classify'){var n=0,blank=false;selects.forEach(function(s,i){if(!s.value)blank=true;});if(blank)return {blank:true,msg:'Choose a category for every item.'};
+      selects.forEach(function(s,i){var ok=s.value===q.items[i].c;if(ok)n++;s.parentNode.classList.toggle('wrong',!ok&&false);});
+      return {ok:n===q.items.length,msg:n+' of '+q.items.length+' are right. Not yet.',n:n};}
+    if(q.type==='order'){if(picked.length<q.shown.length)return {blank:true,msg:'Put all '+q.shown.length+' items in order first.'};var seq=picked.map(function(i){return q.shown[i];});var nr=0;seq.forEach(function(t,i){if(t===q.items[i])nr++;});return {ok:seq.join('|')===q.items.join('|'),msg:nr+' of '+q.items.length+' are in the right place. Not yet.'};}
+  }
+  function check(){if(done)return;var g=grade();if(g.blank){fb.className='fb no';fb.textContent=g.msg;return;}
+    tries++;
+    if(g.ok){finish(true,g.msg);return;}
+    if(tries>=o.maxTries){finish(false,g.msg);return;}
+    fb.className='fb no';fb.textContent=(g.msg||'Not yet.')+' Try again'+(o.hints&&q.hint?' or use the hint.':'.');
+    if(q.type==='mc'&&sel!==null){card.querySelectorAll('.opt')[sel].classList.add('wrong');}
+    setTries();}
+  function finish(ok,msg){done=true;tr.textContent='';
+    fb.className='fb '+(ok?'ok':'no');fb.textContent=ok?(msg&&/Accepted/.test(msg)?msg:'Correct!'):(o.maxTries>1?'That was your last try. Here is the answer:':'Not correct. Here is the answer:');
+    if(q.type==='mc'){card.querySelectorAll('.opt').forEach(function(b,i){b.disabled=true;if(q.shown[i]===q.answer)b.classList.add('right');else if(i===sel&&!ok)b.classList.add('wrong');});}
+    if(input)input.disabled=true;selects.forEach(function(s,i){s.disabled=true;s.parentNode.classList.add(s.value===q.items[i].c?'right':'wrong');if(s.value!==q.items[i].c){var a=document.createElement('span');a.className='muted';a.textContent=' → '+q.items[i].c;s.parentNode.firstChild.appendChild(a);}});
+    chk.disabled=true;if(hb)hb.disabled=true;
+    var ans='';if(q.type==='num')ans='<p><b>Answer:</b> '+(q.answer<0?'−'+(-q.answer):q.answer)+(q.unit==='°'?'°':' '+(q.unit||''))+'</p>';if(q.type==='text')ans='<p><b>Answer:</b> '+esc(q.accept[0])+'</p>';if(q.type==='order')ans='<p><b>Order:</b> '+q.items.map(esc).join(' → ')+'</p>';
+    card.insertAdjacentHTML('beforeend','<div class="sol">'+ans+q.sol+'</div>');
+    if(o.onDone)o.onDone(ok&&tries===1,ok);}
+  return card;
+}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+function renderPractice(m,id){
+  var t=T.filter(function(x){return x.id===id;})[0];
+  m.insertAdjacentHTML('beforeend','<p class="secmeta">NC1 · Practice · about 5 minutes</p><h1>Practice: '+t.name+'</h1><p class="muted">Level 2.0 foundations first, then Level 3.0 explain-and-compare questions. Up to 3 tries each. New numbers every time you press “Try another like this.”</p>');
+  if(!S.prac[id])S.prac[id]=t.practice.map(function(g){return newQ(g);});
+  S.prac[id].forEach(function(q,i){m.appendChild(practiceCard(t,i,q));});
+  m.appendChild(nav(true,S.screen+1<SCREENS.length-2?'Next topic':'Go to mastery check'));
+}
+function practiceCard(t,i,q){
+  var c=qCard(q,{num:(i+1)+'.',maxTries:3,hints:true,regen:function(old){var nq=newQ(t.practice[i],q.prompt);S.prac[t.id][i]=nq;var nc=practiceCard(t,i,nq);old.replaceWith(nc);nc.classList.add('flash');var f=nc.querySelector('input,button.opt,select,button.chip');if(f)f.focus();}});
+  return c;}
+
+// ---------- mastery ----------
+function buildMastery(){var qs=[];T.forEach(function(t){t.mastery.forEach(function(g){var q=newQ(g);q.topic=t.id;qs.push(q);});});return qs;}
+function renderMastery(m){
+  if(!S.mastery){S.mastery=buildMastery();S.mres=S.mastery.map(function(){return null;});}
+  m.insertAdjacentHTML('beforeend','<p class="secmeta">Mastery check · about 8 minutes</p><h1>Mastery check</h1><p>Eight questions, two per topic (one Level 2.0, one Level 3.0). <b>One try each, no hints.</b> The solution appears after you answer.</p>');
+  var fin=document.createElement('button');
+  S.mastery.forEach(function(q,i){var c=qCard(q,{num:(i+1)+'.',maxTries:1,hints:false,onDone:function(first,ok){S.mres[i]=ok;upd();}});
+    if(S.mres[i]!==null){c.querySelector('.fb').className='fb muted';c.querySelector('.fb').textContent='Already answered: '+(S.mres[i]?'correct':'not correct')+'.';c.querySelectorAll('button,input,select').forEach(function(x){x.disabled=true;});}
+    m.appendChild(c);});
+  var d=nav(true,'See my results',function(){go(S.screen+1);});fin=d.lastChild;m.appendChild(d);
+  function upd(){var left=S.mres.filter(function(x){return x===null;}).length;fin.disabled=left>0;fin.textContent=left>0?('Answer '+left+' more to see results'):'See my results';}
+  upd();
+}
+
+// ---------- results ----------
+function topicScores(){return T.map(function(t){var tot=0,ok=0;S.mastery.forEach(function(q,i){if(q.topic===t.id){tot++;if(S.mres[i])ok++;}});return {t:t,ok:ok,tot:tot,pct:tot?ok/tot:0};});}
+function mins(){return S.start?Math.max(1,Math.round((Date.now()-S.start)/60000)):0;}
+function renderResults(m){
+  if(!S.mastery||S.mres.some(function(x){return x===null;})){go(SCREENS.indexOf('mastery'));return;}
+  var ts=topicScores(),ok=S.mres.filter(Boolean).length,n=S.mres.length;
+  m.insertAdjacentHTML('beforeend','<p class="secmeta">Results</p><h1>Your results'+(S.name?', '+esc(S.name):'')+'</h1>'+
+  '<div class="panel"><div class="score">'+ok+' / '+n+'</div><p class="muted">Mastery check · '+Math.round(100*ok/n)+'% · about '+mins()+' minutes on this review</p>'+
+  '<div class="tw"><table><tr><th>Topic (NC1)</th><th>Score</th><th>Status</th><th class="noprint"></th></tr>'+ts.map(function(x,i){var solid=x.pct>=0.75;return '<tr><td>'+x.t.name+'</td><td>'+x.ok+' / '+x.tot+'</td><td><span class="tag '+(solid?'solid':'rev')+'">'+(solid?'Solid':'Review')+'</span></td><td class="noprint"><button class="btn small" type="button" data-more="'+i+'">'+(solid?'Extra practice':'Practice more')+'</button></td></tr>';}).join('')+'</table></div>'+
+  '<p class="muted" style="margin-top:.8em">Solid = at least 75% on that topic. Your results are not sent anywhere. Copy them or save them as a PDF to share with your teacher.</p></div>');
+  var weak=ts.filter(function(x){return x.pct<0.75;});
+  m.insertAdjacentHTML('beforeend','<div class="panel"><h2>Next steps</h2>'+(weak.length?'<p>Reread the Learn page and use <b>Practice more</b> for: '+weak.map(function(x){return x.t.name;}).join(', ')+'. Aim for a streak of 5.</p>':'<p>Every topic is solid. Try the Honors challenge, or keep a streak going with extra practice.</p>')+
+  '<div class="row noprint"><button class="btn primary" type="button" id="copyR">Copy my results</button><button class="btn" type="button" id="printR">Print / save as PDF</button><button class="btn" type="button" id="retake">Retake the mastery check</button><button class="btn" type="button" id="hon">Honors challenge (optional)</button></div><div class="fb" id="copyFb" aria-live="polite"></div></div>');
+  m.querySelectorAll('[data-more]').forEach(function(b){b.onclick=function(){S.more={t:ts[+b.dataset.more].t,streak:0,best:0,q:null};render();window.scrollTo(0,0);};});
+  $('copyR').onclick=function(){copyText(resultsText(ts),$('copyFb'));};
+  $('printR').onclick=function(){window.print();};
+  $('retake').onclick=function(){S.mastery=null;S.mres=null;go(SCREENS.indexOf('mastery'));};
+  $('hon').onclick=function(){S.honors={qs:BANK.honors.map(function(g){return newQ(g);})};render();window.scrollTo(0,0);};
+  var d=document.createElement('div');d.className='nav';var b=document.createElement('button');b.className='btn';b.type='button';b.textContent='Back to mastery check';b.onclick=function(){go(S.screen-1);};d.appendChild(b);m.appendChild(d);
+}
+function resultsText(ts){var ok=S.mres.filter(Boolean).length,n=S.mres.length;var d=new Date();
+  return ['Chemistry Unit 2 Nuclear Chemistry (NC1) Review – Results','Name: '+(S.name||'(not entered)'),'Date: '+d.toLocaleDateString()+' '+d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}),'Mastery check: '+ok+'/'+n+' ('+Math.round(100*ok/n)+'%)']
+  .concat(ts.map(function(x){return x.t.name+': '+x.ok+'/'+x.tot+' – '+(x.pct>=0.75?'Solid':'Review');}))
+  .concat(['Time on review: about '+mins()+' minutes']).join('\n');}
+function copyText(txt,fb){function ok(){fb.className='fb ok';fb.textContent='Copied. Paste it into a message to your teacher.';}
+  function fallback(){var ta=document.createElement('textarea');ta.value=txt;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var good=false;try{good=document.execCommand('copy');}catch(e){}document.body.removeChild(ta);
+    if(good)ok();else{fb.className='fb hint';fb.innerHTML='Copy this text by hand:<br><textarea rows="8" style="width:100%;margin-top:6px">'+esc(txt)+'</textarea>';}}
+  try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback);}else fallback();}catch(e){fallback();}}
+
+// ---------- practice more ----------
+function renderMore(m){var P=S.more,t=P.t;
+  m.insertAdjacentHTML('beforeend','<p class="secmeta">NC1 · Practice more</p><h1>Practice more: '+t.name+'</h1><div class="panel"><p class="streak">Streak: <span id="stk">'+P.streak+'</span> · Best: <span id="bst">'+P.best+'</span></p><p class="muted">New problems keep coming. A first-try correct answer adds to your streak; a miss resets it. Hints are allowed but break the streak.</p></div>');
+  var holder=document.createElement('div');m.appendChild(holder);
+  function next(){var g=BANK.pick(t.practice);var q=newQ(g,P.q&&P.q.prompt);P.q=q;var used=false;
+    var c=qCard(q,{num:'',maxTries:3,hints:true,onDone:function(first,ok){if(first&&!used){P.streak++;P.best=Math.max(P.best,P.streak);}else P.streak=0;$('stk').textContent=P.streak;$('bst').textContent=P.best;
+      var nb=document.createElement('button');nb.type='button';nb.className='btn primary';nb.textContent='Next problem';nb.style.marginTop='10px';nb.onclick=next;c.appendChild(nb);nb.focus();}});
+    var hb=[].filter.call(c.querySelectorAll('button'),function(b){return b.textContent==='Hint';})[0];if(hb){var old=hb.onclick;hb.onclick=function(){used=true;old();};}
+    holder.innerHTML='';holder.appendChild(c);}
+  next();
+  var d=document.createElement('div');d.className='nav';var b=document.createElement('button');b.className='btn';b.type='button';b.textContent='Back to results';b.onclick=function(){S.more=null;render();window.scrollTo(0,0);};
+  var l=document.createElement('button');l.className='btn';l.type='button';l.textContent='Reread the Learn page';l.onclick=function(){S.more=null;go(SCREENS.indexOf('learn:'+t.id));};d.appendChild(b);d.appendChild(l);m.appendChild(d);}
+
+function renderHonors(m){
+  m.insertAdjacentHTML('beforeend','<p class="secmeta">Optional · about 3 minutes</p><h1>Honors challenge</h1><p>Three nuclear-equation problems from the Honors notes. Balance the mass numbers (top) and the atomic numbers (bottom) on both sides. Up to 3 tries, hints allowed.</p>');
+  S.honors.qs.forEach(function(q,i){m.appendChild(qCard(q,{num:(i+1)+'.',maxTries:3,hints:true}));});
+  var d=document.createElement('div');d.className='nav';var b=document.createElement('button');b.className='btn';b.type='button';b.textContent='Back to results';b.onclick=function(){S.honors=null;render();window.scrollTo(0,0);};d.appendChild(b);m.appendChild(d);}
+
+// ---------- terms dialog ----------
+$('termsBody').innerHTML=termsHTML();
+$('termsBtn').onclick=function(){var dl=$('terms');if(dl.showModal)dl.showModal();else dl.setAttribute('open','');};
+$('termsClose').onclick=function(){var dl=$('terms');if(dl.close)dl.close();else dl.removeAttribute('open');};
+$('terms').addEventListener('click',function(e){if(e.target===this&&this.close)this.close();});
+
+window.__APP={S:S,go:go,SCREENS:SCREENS,resultsText:function(){return resultsText(topicScores());}};
+render();
+})();
+</script>
+</body>
+</html>
